@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { routes } from "@/router/routes";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/checkAccess";
@@ -40,7 +40,6 @@ import ACCESS_ENUM from "@/access/accessEnum";
 const router = useRouter();
 const store = useStore();
 // 获取全局共享store对象
-const loginUser = store.state.user.loginUser;
 
 // 展示在菜单的路由
 // const visibleRoutes = routes.filter((route) => {
