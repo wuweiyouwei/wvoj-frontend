@@ -1,16 +1,17 @@
 import { StoreOptions } from "vuex";
+import Access_Enum from "@/access/accessEnum";
 
 export default {
   namespaced: true,
   state: () => ({
     loginUser: {
       userName: "未登录",
-      role: "notLogin",
+      userRole: Access_Enum.NOT_LOGIN,
     },
   }),
   actions: {
-    getLoginUser({ commit, state }, payload) {
-      commit("updateUser", { userName: "无为", role: "admin" });
+    getLoginUser({ commit }, payload) {
+      commit("updateUser", payload);
     },
   },
   mutations: {
