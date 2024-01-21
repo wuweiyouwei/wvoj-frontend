@@ -1,28 +1,44 @@
 <template>
   <div id="userLayout">
     <a-layout style="min-height: 100vh">
-      <UserLoginView></UserLoginView>
+      <a-layout-header class="header">
+        <a-space>
+          <img src="../assets/判题-正确.svg" class="logo" />
+          <div>无为 OJ</div>
+        </a-space>
+      </a-layout-header>
+      <a-layout-content class="content">
+        <router-view />
+      </a-layout-content>
+      <a-layout-footer class="footer">
+        <div>By 无为</div>
+      </a-layout-footer>
     </a-layout>
   </div>
 </template>
 
 <style scoped>
 #userLayout {
+  text-align: center;
+  background: url("https://gw.alipayobjects.com/zos/rmsportal/FfdJeJRQWjEeGTpqgBKj.png")
+    0% 0% / 100% 100%;
+}
+
+#userLayout .logo {
+  width: 64px;
+  height: 64px;
 }
 
 #userLayout .header {
-  margin-bottom: 16px;
-  box-shadow: #eee 1px 1px 5px;
+  margin-top: 16px;
 }
 
 #userLayout .content {
-  background: linear-gradient(to right, #bbb, #fff);
   margin-bottom: 16px;
   padding: 20px;
 }
 
 #userLayout .footer {
-  background: #efefef;
   padding: 16px;
   position: sticky;
   bottom: 0;
@@ -31,10 +47,4 @@
   text-align: center;
 }
 </style>
-<script>
-import UserLoginView from "@/views/user/UserLoginView";
-
-export default {
-  components: { UserLoginView },
-};
-</script>
+<script></script>

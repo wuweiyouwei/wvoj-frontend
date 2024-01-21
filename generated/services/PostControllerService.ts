@@ -1,7 +1,3 @@
-/* generated using openapi-typescript-codegen -- do no edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
 import type { BaseResponse_boolean_ } from "../models/BaseResponse_boolean_";
 import type { BaseResponse_long_ } from "../models/BaseResponse_long_";
 import type { BaseResponse_Page_PostVO_ } from "../models/BaseResponse_Page_PostVO_";

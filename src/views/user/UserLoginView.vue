@@ -1,17 +1,26 @@
 <template>
-  <div id="userLogin">
-    <a-form :model="form" :style="{ width: '600px' }" @submit="handleSubmit">
+  <div id="userLoginView">
+    <h2 style="margin-bottom: 16px">用户登录</h2>
+    <a-form
+      style="max-width: 480px; margin: 0 auto"
+      label-align="left"
+      auto-label-width
+      :model="form"
+      @submit="handleSubmit"
+    >
       <a-form-item field="userAccount" label="账号">
         <a-input v-model="form.userAccount" placeholder="请输入账号" />
       </a-form-item>
-      <a-form-item field="userPassword" label="密码">
+      <a-form-item field="userPassword" tooltip="密码不少于 8 位" label="密码">
         <a-input-password
           v-model="form.userPassword"
-          placeholder="密码不少于 8 位"
+          placeholder="请输入密码"
         />
       </a-form-item>
       <a-form-item>
-        <a-button html-type="submit">提交</a-button>
+        <a-button type="primary" html-type="submit" style="width: 120px">
+          登录
+        </a-button>
       </a-form-item>
     </a-form>
   </div>
@@ -24,9 +33,6 @@ import message from "@arco-design/web-vue/es/message";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
-const router = useRouter();
-const store = useStore();
-
 /**
  * 表单信息
  */
@@ -35,24 +41,24 @@ const form = reactive({
   userPassword: "",
 } as UserLoginRequest);
 
+const router = useRouter();
+const store = useStore();
+
 /**
- * 表单提交
+ * 提交表单
+ * @param data
  */
 const handleSubmit = async () => {
-  console.log(JSON.stringify(form));
-  // 请求后端登录接口
   const res = await UserControllerService.userLoginUsingPost(form);
+  // 登录成功，跳转到主页
   if (res.code === 0) {
-    console.log("登陆成功，更新用户信息");
-    // 修改登录状态信息
     await store.dispatch("user/getLoginUser");
-    // 登陆成功，跳转到首页
     router.push({
       path: "/",
       replace: true,
     });
   } else {
-    message.error(res.message);
+    message.error("登陆失败，" + res.message);
   }
 };
 </script>
